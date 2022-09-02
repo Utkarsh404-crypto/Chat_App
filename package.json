@@ -8,7 +8,7 @@
         "npm": "8.1.0"
     },
     "scripts": {
-        "start": "node Backend/server.js"
+        "start": "node backend/server.js"
 
     },
     "author": "Utkarsh Singh",
