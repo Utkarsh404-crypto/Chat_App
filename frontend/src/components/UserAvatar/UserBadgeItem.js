@@ -17,8 +17,8 @@ export const UserBadgeItem = ({ user, handleFunction }) => {
 			fontWeight="bold"
 			cursor="pointer"
 			onClick={handleFunction}>
-			{user.name}
-			<CloseIcon pl={1} />
+			{" "}
+			{user.name} <CloseIcon pl={1} />{" "}
 		</Badge>
 	);
 };

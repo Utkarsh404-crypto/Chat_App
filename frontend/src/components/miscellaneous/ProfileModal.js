@@ -58,7 +58,7 @@ const ProfileModal = ({ user, children }) => {
 							fontFamily="Work sans">
 							Email: {user.email}{" "}
 						</Text>{" "}
-					</ModalBody>
+					</ModalBody>{" "}
 					<ModalFooter>
 						<Button
 							colorScheme="blue"

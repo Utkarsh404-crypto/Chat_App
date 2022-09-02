@@ -21,36 +21,39 @@ app.use("/api/message", messageRoute);
 
 //Deployment//
 
+// const __dirname1 = path.resolve();
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static("frontend/build"));
+// if (process.env.NODE_ENV === "production") {
+//     app.use(express.static(path.join(__dirname1, "/frontend/build")));
 
-
-} else {
-    app.get('/', (req, res) => {
-        res.send("API RUNNING SUCCESSFULLY")
-    });
-}
-
+//     app.get("*", (req, res) =>
+//         res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
+//     );
+// } else {
+//     app.get("/", (req, res) => {
+//         res.send("API is running..");
+//     });
+// }
 //Deployment//
 
 app.use(notFound);
 app.use(errors);
 
 const PORT = process.env.PORT || 8080
-const server = app.listen(PORT, () => {
+const server = app.listen(8080, () => {
     console.log(`Server Listening at port ${PORT}`)
 })
 
-const io = require('socket.io')(server, {
+const io = require("socket.io")(server, {
     pingTimeout: 60000,
     cors: {
         origin: "http://localhost:3000",
+
     },
 });
 
 io.on("connection", (socket) => {
-    console.log("connected to socket.io");
+    console.log("Connected to socket.io");
 
     socket.on("setup", (userData) => {
         socket.join(userData._id);
@@ -63,11 +66,12 @@ io.on("connection", (socket) => {
         console.log(`User Joined The Room ${room}`);
     });
 
-    socket.on("typing", (room) => socket.in(room).emit("typing"))
-    socket.on("stop typing", (room) => socket.in(room).emit("stop typing"))
+    socket.on("typing", (room) => socket.in(room).emit("typing"));
+    socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
 
     socket.on("new message", (newMessage) => {
         var chat = newMessage.chat;
+
         if (!chat.users) return console.log("not defined");
 
         chat.users.forEach(user => {
@@ -81,4 +85,4 @@ io.on("connection", (socket) => {
         console.log("USER DISCONNECTED");
         socket.leave(userData._id);
     });
-})
+});

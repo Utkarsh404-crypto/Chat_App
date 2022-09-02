@@ -33,7 +33,7 @@ import ChatLoading from "../ChatLoading";
 import UserListItem from "../UserAvatar/UserListItem";
 import { getSender } from "../../config/ChatLogics";
 import NotificationBadge from "react-notification-badge";
-import { Effect } from "react-notification-badge";
+import Effect from "react-notification-badge/lib/components/Effect";
 
 const SideBar = () => {
 	const [search, setSearch] = useState("");
@@ -166,20 +166,19 @@ const SideBar = () => {
 						</MenuButton>
 						{
 							<MenuList pl={2}>
-								{!notifications.length && "No new messages to show"}
-								{notifications.map((noti) => (
+								{!notifications.length && "No New Messages"}
+								{notifications.map((notif) => (
 									<MenuItem
-										key={noti._id}
+										key={notif._id}
 										onClick={() => {
-											setSelectedChat(noti.chat);
-											setNotifications(notifications.filter((n) => n !== noti));
+											setSelectedChat(notif.chat);
+											setNotifications(
+												notifications.filter((n) => n !== notif)
+											);
 										}}>
-										{noti.chat.isGroupChat
-											? `Message received in ${noti.chat.chatName}`
-											: `Message received from ${getSender(
-													user,
-													noti.chat.users
-											  )}`}
+										{notif.chat.isGroupChat
+											? `Message in ${notif.chat.chatName}`
+											: `Messagefrom ${getSender(user, notif.chat.users)}`}
 									</MenuItem>
 								))}
 							</MenuList>

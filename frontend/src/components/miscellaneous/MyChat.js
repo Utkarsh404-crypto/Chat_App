@@ -95,6 +95,7 @@ const MyChat = ({ fetchAgain }) => {
 								borderRadius="lg"
 								key={chat._id}>
 								<Text>
+									{" "}
 									{!chat.isGroupChat
 										? getSender(user, chat.users)
 										: chat.chatName}{" "}

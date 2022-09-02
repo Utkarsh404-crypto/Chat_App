@@ -22,11 +22,11 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
 				display={{ base: "flex", md: "none" }}
 				icon={<ArrowBackIcon />}
 				onClick={() => setSelectedChat("")}
-			/>
+			/>{" "}
 			<SingleChat
 				fetchAgain={fetchAgain}
 				setFetchAgain={setFetchAgain}
-			/>
+			/>{" "}
 		</Box>
 	);
 };
