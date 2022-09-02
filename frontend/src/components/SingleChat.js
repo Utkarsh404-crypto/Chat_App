@@ -186,7 +186,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 						display="flex"
 						justifyContent={{ base: "space-between" }}
 						alignItems="center">
-						{" "}
+						<IconButton
+							d={{ base: "flex", md: "none" }}
+							icon={<ArrowBackIcon />}
+							onClick={() => setSelectedChat("")}
+						/>{" "}
 						{!slectedchat.isGroupChat ? (
 							<>
 								{getSender(user, slectedchat.users)}{" "}
