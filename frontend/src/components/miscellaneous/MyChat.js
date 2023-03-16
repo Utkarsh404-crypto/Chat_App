@@ -22,7 +22,10 @@ const MyChat = ({ fetchAgain }) => {
 				}
 			};
 
-			const { data } = await axios.get("/api/chats", config);
+			const { data } = await axios.get(
+				"https://confabmern.herokuapp.com/api/chats",
+				config
+			);
 
 			setChats(data);
 		} catch (error) {

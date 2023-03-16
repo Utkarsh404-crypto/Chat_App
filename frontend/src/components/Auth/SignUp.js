@@ -104,7 +104,7 @@ const SignUp = () => {
 				}
 			};
 			const { data } = await axios.post(
-				"/api/user",
+				"https://confabmern.herokuapp.com/api/user",
 				{ name, email, password, profile_pic },
 				config
 			);

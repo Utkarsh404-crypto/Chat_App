@@ -28,7 +28,6 @@ import ProfileModal from "./ProfileModal";
 import { useHistory } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
-import { get } from "mongoose";
 import ChatLoading from "../ChatLoading";
 import UserListItem from "../UserAvatar/UserListItem";
 import { getSender } from "../../config/ChatLogics";
@@ -79,7 +78,10 @@ const SideBar = () => {
 				}
 			};
 
-			const { data } = await axios.get(`/api/user?search=${search}`, config);
+			const { data } = await axios.get(
+				`https://confabmern.herokuapp.com/api/user?search=${search}`,
+				config
+			);
 
 			setLoad(false);
 			setSearchResult(data);
@@ -104,7 +106,11 @@ const SideBar = () => {
 					Authorization: `Bearer ${user.token}`
 				}
 			};
-			const { data } = await axios.post(`/api/chats`, { userId }, config);
+			const { data } = await axios.post(
+				`https://confabmern.herokuapp.com/api/chats`,
+				{ userId },
+				config
+			);
 
 			if (!chats.find((c) => c._id === data._id)) setChats([...chats, data]);
 			setSelectedChat(data);
@@ -178,7 +184,7 @@ const SideBar = () => {
 										}}>
 										{notif.chat.isGroupChat
 											? `Message in ${notif.chat.chatName}`
-											: `Messagefrom ${getSender(user, notif.chat.users)}`}
+											: `Message from ${getSender(user, notif.chat.users)}`}
 									</MenuItem>
 								))}
 							</MenuList>

@@ -51,7 +51,10 @@ const GroupChatModel = ({ children }) => {
 				}
 			};
 
-			const { data } = await axios.get(`/api/user?search=${search}`, config);
+			const { data } = await axios.get(
+				`https://confabmern.herokuapp.com/api/user?search=${search}`,
+				config
+			);
 			setLoad(false);
 			setSearchResult(data);
 		} catch (error) {
@@ -84,7 +87,7 @@ const GroupChatModel = ({ children }) => {
 			};
 
 			const { data } = await axios.post(
-				`/api/chats/group`,
+				`https://confabmern.herokuapp.com/api/chats/group`,
 				{
 					name: groupChatName,
 					users: JSON.stringify(selectedUsers.map((u) => u._id))

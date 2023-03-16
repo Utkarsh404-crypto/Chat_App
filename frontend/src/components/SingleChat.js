@@ -17,7 +17,6 @@ import ProfileModal from "./miscellaneous/ProfileModal2";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { useState } from "react";
 import axios from "axios";
-import { set } from "mongoose";
 import { useEffect } from "react";
 import "./styles.css";
 import ScrollableChat from "./ScrollableChat";
@@ -25,7 +24,7 @@ import io from "socket.io-client";
 import Lottie from "react-lottie";
 import animationData from "../Animations/TypingAnimation.json";
 
-const ENDPOINT = "http://localhost:8080";
+const ENDPOINT = "https://confabmern.herokuapp.com"; //changes
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -66,7 +65,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 			};
 			setLoad(true);
 			const { data } = await axios.get(
-				`/api/message/${slectedchat._id}`,
+				`https://confabmern.herokuapp.com/api/message/${slectedchat._id}`,
 				config
 			);
 			setMessages(data);
@@ -126,7 +125,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 				};
 				setNewMessage("");
 				const { data } = await axios.post(
-					"/api/message",
+					"https://confabmern.herokuapp.com/api/message",
 					{ content: newMessage, chatId: slectedchat._id },
 					config
 				);
@@ -230,7 +229,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 							<div className="messages">
 								<ScrollableChat messages={messages} />{" "}
 							</div>
-						)}
+						)}{" "}
 						<FormControl
 							onKeyDown={sendMessage}
 							isRequired
@@ -267,10 +266,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 					<Text
 						color={"#0096FF"}
 						fontWeight={"extrabold"}
-						fontSize="3xl"
+						fontSize="2xl"
 						pb={3}
 						fontFamily="Work sans">
-						Start Chatting{" "}
+						CHAT{" "}
 					</Text>{" "}
 				</Box>
 			)}{" "}

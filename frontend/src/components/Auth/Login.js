@@ -46,7 +46,7 @@ const Login = () => {
 			};
 
 			const { data } = await axios.post(
-				"/api/user/login",
+				"https://confabmern.herokuapp.com/api/user/login",
 				{ email, password },
 				config
 			);
